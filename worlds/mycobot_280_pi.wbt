@@ -2,37 +2,22 @@
 EXTERNPROTO "protos/MyCobot280Pi.proto"
 EXTERNPROTO "protos/AdaptiveGripper.proto"
 
-WorldInfo { basicTimeStep 16 }
+WorldInfo {
+  basicTimeStep 16
+}
 Viewpoint {
   position    -1.4 0 0.6
-  orientation  0.1 0.97 0.22 2.2
+  orientation 0.1  0.97 0.22 2.2
 }
 
+#–– Instancia del robot
 DEF MYCOBOT MyCobot280Pi {
   translation 0 0 0
   controller  "basic_control"
 }
 
-# spawn gripper slightly in front of flange so they snap
+#–– Instancia de la pinza, justo delante del flange
 DEF GRIPPER AdaptiveGripper {
   translation 0 0.08 0.71
   rotation   -1 0 0 1.5708
-}
-
-Solid {
-  name "joint6_flange"  // Declaración de 'name'
-  boundingObject Pose {  // Declaración de 'boundingObject'
-    translation 0.000000 0.000000 -0.012000
-    children [
-      DEF joint7 Mesh {
-        url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint7.dae"
-      }
-DEF joint7_visual CadShape {
-        url "/home/lucas/projects/mycobot_ros2/mycobot_description/meshes/adaptive_gripper.dae"
-      }
-    ]
-  }
-  physics Physics {  // Declaración de 'physics'
-    mass 0.05
-  }
 }

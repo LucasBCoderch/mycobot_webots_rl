@@ -5,37 +5,40 @@
 # Extracted from: /home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/mycobot_280_pi.urdf
 
 PROTO MyCobot280Pi [
-  field  SFVec3f     translation     0 0 0
-  field  SFRotation  rotation        0 0 1 0
-  field  SFString    name            "MyCobot280Pi"  
-  field  SFString    controller      "void"          
-  field  MFString    controllerArgs  []              
-  field  SFString    customData      ""              
-  field  SFBool      supervisor      FALSE           
-  field  SFBool      synchronization TRUE
-  field  SFBool      selfCollision   FALSE          
+  field SFVec3f     translation     0 0 0
+  field SFRotation  rotation        0 0 1 0
+  field SFString    name            "MyCobot280Pi"  
+  field SFString    controller      "void"          
+  field MFString    controllerArgs  []              
+  field SFString    customData      ""              
+  field SFBool      supervisor      FALSE           
+  field SFBool      synchronization TRUE
+  field SFBool      selfCollision   FALSE          
 ]
-
 {
   Robot {
-    translation IS translation
-    rotation IS rotation
-    controller IS controller
+    translation    IS translation
+    rotation       IS rotation
+    controller     IS controller
     controllerArgs IS controllerArgs
-    customData IS customData
-    supervisor IS supervisor
+    customData     IS customData
+    supervisor     IS supervisor
     synchronization IS synchronization
-    selfCollision IS selfCollision
+    selfCollision  IS selfCollision
+
     children [
+      #–– Base pose
       Pose {
-        translation 0.000000 0.000000 -0.030000
-        rotation 0.000000 0.000000 1.000000 1.570800
+        translation 0 0 -0.03
+        rotation    0 0 1 1.5708
         children [
           DEF G_base_visual CadShape {
             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/G_base.dae"
           }
         ]
       }
+
+      #–– Joint1 + hinge to joint2
       Solid {
         children [
           DEF joint1_pi_visual CadShape {
@@ -43,26 +46,27 @@ PROTO MyCobot280Pi [
           }
           HingeJoint {
             jointParameters HingeJointParameters {
-              axis 0.000000 0.000000 1.000000
-              anchor 0.000000 0.000000 0.139560
+              axis   0 0 1
+              anchor 0 0 0.13956
             }
             device [
               RotationalMotor {
-                name "joint2_to_joint1"
+                name       "joint2_to_joint1"
                 minPosition -2.9322
-                maxPosition 2.9322
-                maxTorque 1000.0
+                maxPosition  2.9322
+                maxTorque    1000
               }
               PositionSensor {
                 name "joint2_to_joint1_sensor"
               }
             ]
             endPoint Solid {
-              translation 0.000000 0.000000 0.139560
+              translation 0 0 0.13956
               children [
+                #–– Joint2 visual + hinge to joint3
                 Pose {
-                  translation 0.000000 0.000000 -0.060960
-                  rotation 0.000000 0.000000 -1.000000 1.570800
+                  translation 0 0 -0.06096
+                  rotation    0 0 -1 1.5708
                   children [
                     DEF joint2_visual CadShape {
                       url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
@@ -71,27 +75,28 @@ PROTO MyCobot280Pi [
                 }
                 HingeJoint {
                   jointParameters HingeJointParameters {
-                    axis -0.000004 -1.000000 -0.000004
-                    anchor 0.000000 0.000000 -0.001000
+                    axis   -0.000004 -1  -0.000004
+                    anchor 0         0  -0.001
                   }
                   device [
                     RotationalMotor {
-                      name "joint3_to_joint2"
+                      name       "joint3_to_joint2"
                       minPosition -2.3562
-                      maxPosition 2.3562
-                      maxTorque 1000.0
+                      maxPosition  2.3562
+                      maxTorque    1000
                     }
                     PositionSensor {
                       name "joint3_to_joint2_sensor"
                     }
                   ]
                   endPoint Solid {
-                    translation 0.000000 0.000000 -0.001000
-                    rotation 0.577352 0.577350 -0.577350 2.094399
+                    translation 0 0 -0.001
+                    rotation    0.57735 0.57735 -0.57735 2.0944
                     children [
+                      #–– Joint3 visual + hinge to joint4
                       Pose {
-                        translation 0.000000 0.000000 0.032560
-                        rotation 0.000000 -1.000000 0.000000 1.570800
+                        translation 0 0 0.03256
+                        rotation    0 -1 0 1.5708
                         children [
                           DEF joint3_visual CadShape {
                             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
@@ -100,26 +105,27 @@ PROTO MyCobot280Pi [
                       }
                       HingeJoint {
                         jointParameters HingeJointParameters {
-                          axis 0.000000 0.000000 1.000000
-                          anchor -0.110400 0.000000 0.000000
+                          axis   0 0 1
+                          anchor -0.1104 0 0
                         }
                         device [
                           RotationalMotor {
-                            name "joint4_to_joint3"
+                            name       "joint4_to_joint3"
                             minPosition -2.618
-                            maxPosition 2.618
-                            maxTorque 1000.0
+                            maxPosition  2.618
+                            maxTorque    1000
                           }
                           PositionSensor {
                             name "joint4_to_joint3_sensor"
                           }
                         ]
                         endPoint Solid {
-                          translation -0.110400 0.000000 0.000000
+                          translation -0.1104 0 0
                           children [
+                            #–– Joint4 visual + hinge to joint5
                             Pose {
-                              translation 0.000000 0.000000 0.030560
-                              rotation 0.000000 -1.000000 0.000000 1.570800
+                              translation 0 0 0.03056
+                              rotation    0 -1 0 1.5708
                               children [
                                 DEF joint4_visual CadShape {
                                   url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint4.dae"
@@ -128,27 +134,28 @@ PROTO MyCobot280Pi [
                             }
                             HingeJoint {
                               jointParameters HingeJointParameters {
-                                axis 0.000000 -0.000000 1.000000
-                                anchor -0.096000 0.000000 0.064620
+                                axis   0 0 1
+                                anchor -0.096 0 0.06462
                               }
                               device [
                                 RotationalMotor {
-                                  name "joint5_to_joint4"
+                                  name       "joint5_to_joint4"
                                   minPosition -2.5307
-                                  maxPosition 2.5307
-                                  maxTorque 1000.0
+                                  maxPosition  2.5307
+                                  maxTorque    1000
                                 }
                                 PositionSensor {
                                   name "joint5_to_joint4_sensor"
                                 }
                               ]
                               endPoint Solid {
-                                translation -0.096000 0.000000 0.064620
-                                rotation 0.000000 0.000000 -1.000000 1.570800
+                                translation -0.096 0 0.06462
+                                rotation    0 0 -1 1.5708
                                 children [
+                                  #–– Joint5 visual + hinge to joint6
                                   Pose {
-                                    translation 0.000000 -0.001000 -0.034500
-                                    rotation 0.577352 -0.577350 0.577350 2.094399
+                                    translation 0 -0.001 -0.0345
+                                    rotation    0.57735 -0.57735 0.57735 2.0944
                                     children [
                                       DEF joint5_visual CadShape {
                                         url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint5.dae"
@@ -157,26 +164,27 @@ PROTO MyCobot280Pi [
                                   }
                                   HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      axis 0.000004 -1.000000 0.000000
-                                      anchor 0.000000 -0.073180 -0.001000
+                                      axis   0.000004 -1 0
+                                      anchor 0       -0.07318 -0.001
                                     }
                                     device [
                                       RotationalMotor {
-                                        name "joint6_to_joint5"
+                                        name       "joint6_to_joint5"
                                         minPosition -2.8798
-                                        maxPosition 2.8798
-                                        maxTorque 1000.0
+                                        maxPosition  2.8798
+                                        maxTorque    1000
                                       }
                                       PositionSensor {
                                         name "joint6_to_joint5_sensor"
                                       }
                                     ]
                                     endPoint Solid {
-                                      translation 0.000000 -0.073180 -0.001000
-                                      rotation 0.577350 -0.577350 0.577352 2.094399
+                                      translation 0 -0.07318 -0.001
+                                      rotation    0.57735 -0.57735 0.57735 2.0944
                                       children [
+                                        #–– Joint6 visual + hinge to flange
                                         Pose {
-                                          translation 0.000000 0.000000 -0.038000
+                                          translation 0 0 -0.038
                                           children [
                                             DEF joint6_visual CadShape {
                                               url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint6.dae"
@@ -185,26 +193,27 @@ PROTO MyCobot280Pi [
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            axis 0.000000 1.000000 -0.000004
-                                            anchor 0.000000 0.045600 0.000000
+                                            axis   0 1 0
+                                            anchor 0 0.0456 0
                                           }
                                           device [
                                             RotationalMotor {
-                                              name "joint6output_to_joint6"
-                                              minPosition -3.14159
-                                              maxPosition 3.14159
-                                              maxTorque 1000.0
+                                              name       "joint6output_to_joint6"
+                                              minPosition -3.1416
+                                              maxPosition  3.1416
+                                              maxTorque    1000
                                             }
                                             PositionSensor {
                                               name "joint6output_to_joint6_sensor"
                                             }
                                           ]
                                           endPoint Solid {
-                                            translation 0.000000 0.045600 0.000000
-                                            rotation -1.000000 0.000000 0.000000 1.570800
+                                            translation 0 0.0456 0
+                                            rotation    -1 0 0 1.5708
                                             children [
+                                              #–– Flange visual
                                               Pose {
-                                                translation 0.000000 0.000000 -0.012000
+                                                translation 0 0 -0.012
                                                 children [
                                                   DEF joint7_visual CadShape {
                                                     url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint7.dae"
@@ -214,20 +223,22 @@ PROTO MyCobot280Pi [
                                             ]
                                             name "joint6_flange"
                                             boundingObject Pose {
-                                              translation 0.000000 0.000000 -0.012000
+                                              translation 0 0 -0.012
                                               children [
                                                 DEF joint7 Mesh {
                                                   url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint7.dae"
                                                 }
                                               ]
                                             }
-                                         
+                                            physics Physics {
+                                              mass 0.05
+                                            }
                                           }
                                         }
                                       ]
                                       name "joint6"
                                       boundingObject Pose {
-                                        translation 0.000000 0.000000 -0.038000
+                                        translation 0 0 -0.038
                                         children [
                                           DEF joint6 Mesh {
                                             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint6.dae"
@@ -235,102 +246,85 @@ PROTO MyCobot280Pi [
                                         ]
                                       }
                                       physics Physics {
+                                        # la masa ya aplicada en flange, aquí solo enlaza
                                       }
                                     }
                                   }
                                 ]
                                 name "joint5"
                                 boundingObject Pose {
-                                  translation 0.000000 -0.001000 -0.034500
-                                  rotation 0.577352 -0.577350 0.577350 2.094399
+                                  translation 0 -0.001 -0.0345
                                   children [
                                     DEF joint5 Mesh {
                                       url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint5.dae"
                                     }
                                   ]
                                 }
-                                physics Physics {
-                                }
+                                physics Physics { }
                               }
                             }
                           ]
                           name "joint4"
                           boundingObject Pose {
-                            translation 0.000000 0.000000 0.030560
-                            rotation 0.000000 -1.000000 0.000000 1.570800
+                            translation 0 0 0.03056
                             children [
                               DEF joint4 Mesh {
                                 url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint4.dae"
                               }
                             ]
                           }
-                          physics Physics {
-                          }
-                        }
-                      }
-                    ]
-                    name "joint3"
-                    boundingObject Pose {
-                      translation 0.000000 0.000000 0.032560
-                      rotation 0.000000 -1.000000 0.000000 1.570800
-                      children [
-                        DEF joint3 Mesh {
-                          url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
+                          physics Physics { }
                         }
                       ]
+                      name "joint3"
+                      boundingObject Pose {
+                        translation 0 0 0.03256
+                        children [
+                          DEF joint3 Mesh {
+                            url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
+                          }
+                        ]
+                      }
+                      physics Physics { }
                     }
-                    physics Physics {
-                    }
+                  ]
+                  name "joint2"
+                  boundingObject Pose {
+                    translation 0 0 -0.06096
+                    children [
+                      DEF joint2 Mesh {
+                        url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
+                      }
+                    ]
                   }
+                  physics Physics { }
                 }
-              ]
-              name "joint2"
-              boundingObject Pose {
-                translation 0.000000 0.000000 -0.060960
-                rotation 0.000000 0.000000 -1.000000 1.570800
-                children [
-                  DEF joint2 Mesh {
-                    url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
-                  }
-                ]
               }
-              physics Physics {}
+            ]
+            name "joint1"
+            boundingObject DEF joint1_pi Mesh {
+              url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint1_pi.dae"
             }
+            #–– Conector ACTIVO para acoplar el gripper al flange
+            children [
+              Connector {
+                translation 0 0 0
+                rotation    0 0 1 0
+                name   "flange_connector"
+                type   "active"
+                model  "AdaptiveGripper"
+                snap   TRUE
+              }
+            ]
           }
-      
-       
-        name "joint1"
-        boundingObject DEF joint1_pi Mesh {
-          url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint1_pi.dae"
-        }
-          Connector {
-            translation 0 0 0 
-            rotation 0 0 1 0
-            name "flange_connector"
-            type "active"
-            model "AdaptiveGripper"
-            snap TRUE
-          }
-        ]
-      }
-    boundingObject Pose {
-        translation 0 0 -0.030
-        rotation 0 0 1 1.5708
-        children [
-          DEF joint7 Mesh {
-            + url "/home/lucas/projects/mycobot_ros2/mycobot_description/meshes/adaptive_gripper.dae"
-          }
-        ]
-      }
-      physics Physics { mass 0.05 }
-    }
-  DEF G_base Solid {]            
+        ]  # ← cierre children del Robot
     name IS name
     boundingObject Pose {
-      translation 0 0 -0.030
-      rotation 0 0 1 1.5708
+      translation 0 0 -0.03
+      rotation    0 0 1 1.5708
       children [
         DEF G_base Mesh {
+          url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/G_base.dae"
         }
       ]
     }
