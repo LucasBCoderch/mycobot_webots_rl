@@ -1,0 +1,5 @@
+{
+  "controller": "basic_control",
+  "language": "python3",
+  "entry": "basic_control.py"
+}

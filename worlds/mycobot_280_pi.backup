@@ -1,0 +1,27 @@
+#–– Protos ––
+EXTERNPROTO "protos/AdaptiveGripper.proto"
+EXTERNPROTO "protos/MyCobot280Pi.proto"
+...
+
+#–– Mundo ––
+DEF MYCOBOT MyCobot280Pi {
+  controller    "basic_control"
+  supervisor    FALSE
+}
+
+# conector activo en el flange
+DEF FLANGE_CONN Connector {
+  translation      0 0 0.0456
+  rotation         -1 0 0 1.5708
+  name             "flange_connector"
+  type             "active"
+  model            "AdaptiveGripper"
+  snap             TRUE
+  unilateralLock   TRUE
+  unilateralUnlock TRUE
+}
+
+# supervisor para montar el gripper dinámicamente
+Supervisor {
+  controller "gripper_attacher"
+}
