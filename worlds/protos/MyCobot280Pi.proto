@@ -8,7 +8,7 @@ PROTO MyCobot280Pi [
   field SFVec3f     translation     0 0 0
   field SFRotation  rotation        0 0 1 0
   field SFString    name            "MyCobot280Pi"  
-  field SFString    controller      "void"          
+  field SFString    controller      "basic_control"          
   field MFString    controllerArgs  []              
   field SFString    customData      ""              
   field SFBool      supervisor      FALSE           
@@ -246,7 +246,7 @@ PROTO MyCobot280Pi [
                                         ]  # ← cierre children de boundingObject de Joint6
                                       }
                                       physics Physics {
-                                        # la masa ya aplicada en flange, aquí solo enlaza
+                                        mass 0.05
                                       }
                                     }  # ← cierre endPoint de Joint6
                                   }  # ← cierre HingeJoint de Joint6
@@ -260,7 +260,9 @@ PROTO MyCobot280Pi [
                                     }
                                   ]  # ← cierre children de boundingObject de Joint5
                                 }
-                                physics Physics { }
+                                physics Physics {
+                                  mass 0.05
+                                }
                               }  # ← cierre endPoint de Joint5
                             }  # ← cierre HingeJoint de Joint5
                           ]  # ← cierre children de Joint4
@@ -273,7 +275,9 @@ PROTO MyCobot280Pi [
                               }
                             ]  # ← cierre children de boundingObject de Joint4
                           }
-                          physics Physics { }
+                          physics Physics {
+                            mass 0.05
+                          }
                         }  # ← cierre endPoint de Joint4
                       }  # ← cierre HingeJoint de Joint4
                     ]  # ← cierre children de Joint3
@@ -286,7 +290,9 @@ PROTO MyCobot280Pi [
                         }
                       ]  # ← cierre children de boundingObject de Joint3
                     }
-                    physics Physics { }
+                    physics Physics {
+                      mass 0.05
+                    }
                   }  # ← cierre endPoint de Joint3
                 }  # ← cierre HingeJoint de Joint3
               ]  # ← cierre children de Joint2
@@ -299,7 +305,9 @@ PROTO MyCobot280Pi [
                   }
                 ]  # ← cierre children de boundingObject de Joint2
               }
-              physics Physics { }
+              physics Physics {
+                mass 0.05
+              }
             }  # ← cierre endPoint de Joint2
           }  # ← cierre HingeJoint de Joint2
         ]  # ← cierre children de Joint1
@@ -307,18 +315,18 @@ PROTO MyCobot280Pi [
         boundingObject DEF joint1_pi Mesh {
           url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint1_pi.dae"
         }
-        #–– Conector ACTIVO para acoplar el gripper al flange
-        children [
-          Connector {
-            translation 0 0 0
-            rotation    0 0 1 0
-            name   "flange_connector"
-            type   "active"
-            model  "AdaptiveGripper"
-            snap   TRUE
-          }
-        ]  # ← cierre children de Connector
-      }  # ← cierre Solid de Joint1
+        physics Physics {
+          mass 0.05
+        }
+      }
+      Connector {
+        translation 0 0 0
+        rotation    0 0 1 0
+        name   "flange_connector"
+        type   "active"
+        model  "AdaptiveGripper"
+        snap   TRUE
+      }
     ]  # ← cierre children del Robot
     name IS name
     boundingObject Pose {

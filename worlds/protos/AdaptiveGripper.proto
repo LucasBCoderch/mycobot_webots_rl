@@ -1,10 +1,9 @@
 #VRML_SIM R2025a utf8
 PROTO AdaptiveGripper [
-  field SFVec3f    translation 0 0 0
-  field SFRotation rotation    0 0 1 0
-  field SFString   name        "adaptive_gripper"
-]
-{
+  field SFVec3f     translation 0 0 0
+  field SFRotation  rotation    0 0 1 0
+  field SFString    name        "adaptive_gripper"
+] {
   Robot {
     translation IS translation
     rotation    IS rotation
@@ -12,32 +11,25 @@ PROTO AdaptiveGripper [
     controller  "void"
 
     children [
-      #–– Malla visual de la pinza
       DEF gripper_body Solid {
         children [
           Shape {
             geometry Mesh {
-              url "/home/lucas/projects/mycobot_ros2/mycobot_description/meshes/adaptive_gripper.dae"
+              # ¡Aquí faltaba ‘url’ y sobraba el ‘~’!
+              url "/home/lucas/ros2_ws/src/mycobot_ros2/mycobot_description/meshes/adaptive_gripper/visual/gripper_base.dae"
             }
           }
-          # Conector pasivo (socket) para acoplar al flange
           Connector {
             translation 0 0 0
             rotation   -1 0 0 1.5708
-            name   "gripper_socket"
-            type   "passive"
-            model  "AdaptiveGripper"
-            snap   TRUE
+            name  "gripper_socket"
+            type  "passive"
+            model "AdaptiveGripper"
+            snap  TRUE
           }
         ]
-        boundingObject Shape {
-          geometry Box {
-            size 0.06 0.04 0.02
-          }
-        }
-        physics Physics {
-          mass 0.2
-        }
+        boundingObject Shape { geometry Box { size 0.06 0.04 0.02 } }
+        physics Physics { mass 0.20 }   # usa solo ‘mass’
       }
     ]
   }
