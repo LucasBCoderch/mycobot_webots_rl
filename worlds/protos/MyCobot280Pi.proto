@@ -35,7 +35,7 @@ PROTO MyCobot280Pi [
           DEF G_base_visual CadShape {
             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/G_base.dae"
           }
-        ]
+        ]  # ← cierre children de Base pose
       }
 
       #–– Joint1 + hinge to joint2
@@ -71,7 +71,7 @@ PROTO MyCobot280Pi [
                     DEF joint2_visual CadShape {
                       url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
                     }
-                  ]
+                  ]  # ← cierre children de Joint2 visual
                 }
                 HingeJoint {
                   jointParameters HingeJointParameters {
@@ -101,7 +101,7 @@ PROTO MyCobot280Pi [
                           DEF joint3_visual CadShape {
                             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
                           }
-                        ]
+                        ]  # ← cierre children de Joint3 visual
                       }
                       HingeJoint {
                         jointParameters HingeJointParameters {
@@ -130,7 +130,7 @@ PROTO MyCobot280Pi [
                                 DEF joint4_visual CadShape {
                                   url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint4.dae"
                                 }
-                              ]
+                              ]  # ← cierre children de Joint4 visual
                             }
                             HingeJoint {
                               jointParameters HingeJointParameters {
@@ -160,7 +160,7 @@ PROTO MyCobot280Pi [
                                       DEF joint5_visual CadShape {
                                         url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint5.dae"
                                       }
-                                    ]
+                                    ]  # ← cierre children de Joint5 visual
                                   }
                                   HingeJoint {
                                     jointParameters HingeJointParameters {
@@ -189,7 +189,7 @@ PROTO MyCobot280Pi [
                                             DEF joint6_visual CadShape {
                                               url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint6.dae"
                                             }
-                                          ]
+                                          ]  # ← cierre children de Joint6 visual
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
@@ -218,9 +218,9 @@ PROTO MyCobot280Pi [
                                                   DEF joint7_visual CadShape {
                                                     url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint7.dae"
                                                   }
-                                                ]
+                                                ]  # ← cierre children de Flange visual
                                               }
-                                            ]
+                                            ]  # ← cierre children de Flange
                                             name "joint6_flange"
                                             boundingObject Pose {
                                               translation 0 0 -0.012
@@ -228,14 +228,14 @@ PROTO MyCobot280Pi [
                                                 DEF joint7 Mesh {
                                                   url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint7.dae"
                                                 }
-                                              ]
+                                              ]  # ← cierre children de boundingObject de Flange
                                             }
                                             physics Physics {
                                               mass 0.05
                                             }
-                                          }
-                                        }
-                                      ]
+                                          }  # ← cierre endPoint de Flange
+                                        }  # ← cierre HingeJoint de Flange
+                                      ]  # ← cierre children de Joint6
                                       name "joint6"
                                       boundingObject Pose {
                                         translation 0 0 -0.038
@@ -243,14 +243,14 @@ PROTO MyCobot280Pi [
                                           DEF joint6 Mesh {
                                             url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint6.dae"
                                           }
-                                        ]
+                                        ]  # ← cierre children de boundingObject de Joint6
                                       }
                                       physics Physics {
                                         # la masa ya aplicada en flange, aquí solo enlaza
                                       }
-                                    }
-                                  }
-                                ]
+                                    }  # ← cierre endPoint de Joint6
+                                  }  # ← cierre HingeJoint de Joint6
+                                ]  # ← cierre children de Joint5
                                 name "joint5"
                                 boundingObject Pose {
                                   translation 0 -0.001 -0.0345
@@ -258,12 +258,12 @@ PROTO MyCobot280Pi [
                                     DEF joint5 Mesh {
                                       url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint5.dae"
                                     }
-                                  ]
+                                  ]  # ← cierre children de boundingObject de Joint5
                                 }
                                 physics Physics { }
-                              }
-                            }
-                          ]
+                              }  # ← cierre endPoint de Joint5
+                            }  # ← cierre HingeJoint de Joint5
+                          ]  # ← cierre children de Joint4
                           name "joint4"
                           boundingObject Pose {
                             translation 0 0 0.03056
@@ -271,53 +271,55 @@ PROTO MyCobot280Pi [
                               DEF joint4 Mesh {
                                 url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint4.dae"
                               }
-                            ]
+                            ]  # ← cierre children de boundingObject de Joint4
                           }
                           physics Physics { }
+                        }  # ← cierre endPoint de Joint4
+                      }  # ← cierre HingeJoint de Joint4
+                    ]  # ← cierre children de Joint3
+                    name "joint3"
+                    boundingObject Pose {
+                      translation 0 0 0.03256
+                      children [
+                        DEF joint3 Mesh {
+                          url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
                         }
-                      ]
-                      name "joint3"
-                      boundingObject Pose {
-                        translation 0 0 0.03256
-                        children [
-                          DEF joint3 Mesh {
-                            url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint3.dae"
-                          }
-                        ]
-                      }
-                      physics Physics { }
+                      ]  # ← cierre children de boundingObject de Joint3
                     }
-                  ]
-                  name "joint2"
-                  boundingObject Pose {
-                    translation 0 0 -0.06096
-                    children [
-                      DEF joint2 Mesh {
-                        url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
-                      }
-                    ]
+                    physics Physics { }
+                  }  # ← cierre endPoint de Joint3
+                }  # ← cierre HingeJoint de Joint3
+              ]  # ← cierre children de Joint2
+              name "joint2"
+              boundingObject Pose {
+                translation 0 0 -0.06096
+                children [
+                  DEF joint2 Mesh {
+                    url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint2.dae"
                   }
-                  physics Physics { }
-                }
+                ]  # ← cierre children de boundingObject de Joint2
               }
-            ]
-            name "joint1"
-            boundingObject DEF joint1_pi Mesh {
-              url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint1_pi.dae"
-            }
-            #–– Conector ACTIVO para acoplar el gripper al flange
-            children [
-              Connector {
-                translation 0 0 0
-                rotation    0 0 1 0
-                name   "flange_connector"
-                type   "active"
-                model  "AdaptiveGripper"
-                snap   TRUE
-              }
-            ]
+              physics Physics { }
+            }  # ← cierre endPoint de Joint2
+          }  # ← cierre HingeJoint de Joint2
+        ]  # ← cierre children de Joint1
+        name "joint1"
+        boundingObject DEF joint1_pi Mesh {
+          url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/joint1_pi.dae"
+        }
+        #–– Conector ACTIVO para acoplar el gripper al flange
+        children [
+          Connector {
+            translation 0 0 0
+            rotation    0 0 1 0
+            name   "flange_connector"
+            type   "active"
+            model  "AdaptiveGripper"
+            snap   TRUE
           }
-        ]  # ← cierre children del Robot
+        ]  # ← cierre children de Connector
+      }  # ← cierre Solid de Joint1
+    ]  # ← cierre children del Robot
     name IS name
     boundingObject Pose {
       translation 0 0 -0.03
@@ -326,7 +328,7 @@ PROTO MyCobot280Pi [
         DEF G_base Mesh {
           url "/home/lucas/projects/mycobot_ros2/mycobot_description/urdf/mycobot_280_pi/G_base.dae"
         }
-      ]
+      ]  # ← cierre children de boundingObject del Robot
     }
-  }
-}
+  }  # ← cierre Robot
+}  # ← cierre PROTO MyCobot280Pi
